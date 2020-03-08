@@ -1,7 +1,5 @@
 import pyproj
 P = pyproj.Proj(proj='utm', zone="32N", ellps='WGS84', preserve_units=True)
-def XY_To_LatLon(x,y):
-    return P(x,y,inverse=True)
 with open("init.txt","r") as init:
     for zeile in init:
         while zeile[-1]=="\r" or zeile[-1]=="\n":zeile=zeile[:-1]
@@ -28,7 +26,7 @@ with open("init.txt","r") as init:
                             data_out.write(c)
                         l[0]=float(l[0])
                         l[1]=float(l[1])
-                        l=list(XY_To_LatLon(l[0],l[1]))
+                        l=list(P(l[0],l[1],inverse=True))
                         data_out.write(";"+str(l[0])+"E;"+str(l[1])+"N\n")
         except FileNotFoundError:
             print("Unfallorte"+zeile+"_LinRef.txt existiert nicht")
