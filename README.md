@@ -5,20 +5,8 @@ no code, just some notes on a openstreetmap crash course on the open data day mu
 #### umap / openstreetmap
 Build an own openstreet map with layers, made simple: by [umap](https://umap.openstreetmap.de/de/)
 
-1. Erstelle eine Karte.
-2. Grenzen von Laim: 
-beispielsweise abgucken aus
-https://www.openstreetmap.org/relation/54388
-
-[Wiki von openstreetmap, zB Was ist eine Relation](https://wiki.openstreetmap.org/wiki/Elements)
-
-Bug fixen?
-
-Karte: [laim_ba_mvp](https://umap.openstreetmap.de/de/map/laim_ba_mvp_2644#14/48.1363/11.5047)
-
-Es gibt bei openstreetmap relationen, 
-
-Suchen:
+1. Erstelle eine Karte. Sichere den Editierlink. Suche Deinen Ausschnitt der Welt, speichere Position und Zoomstufe.
+2. Grenzen von Laim: Wikidata-ID von Laim finden (kein Trick, einfach suchen).
 overpass-turbo.eu
 ```
 [out:json][timeout:25];
@@ -26,15 +14,17 @@ overpass-turbo.eu
 (
   // query part for: “boundary=administrative”
   
-  relation[wikidata=Q259879]);
-);
+  relation[wikidata=Q259879];);
 // print results
 out body;
 >;
 out skel qt;
 ```
-danach evtl. noch auf die Lupe klicken ("auf die Daten zoomen")
-Wie haben wir die Wikidata ID gefunden? Tja. Gesucht. Lieber nicht die Relation ID nehmen, die kann sich ändern.
+reinkopieren, ausführen, auf die Lupe klicken ("auf die Daten zoomen"), dann Datentab aufmachen und Inhalt rauskopieren.
+
+In der eigenen Karte: Ebene "boundaries" hinzufügen. Daten importieren -> in die Box kopieren, Format "osm", importieren, sichern. Dann bei Eigenschaften Füllfarbe usw wählen. Speichern.
+
+Oder:
 Export -> Daten -> Rohdaten direkt von Overpass API; `http` zu `https` korrigieren
 in umap füttern
 ```
@@ -47,4 +37,9 @@ Was gibt es von der Stadt aus, oder sonst schon?
 * [Muenchen Transparent Laim](https://www.muenchen-transparent.de/bezirksausschuss/25_Laim), auch ["Tagesordnung auf der Karte"](https://www.muenchen-transparent.de/termine/5659757)
 
 
+Weitere nützliche Links:
+
+* [Wiki von openstreetmap](https://wiki.openstreetmap.org/wiki/Elements)
+* https://www.openstreetmap.org/relation/54388
+* Erste Karte: [laim_ba_mvp](https://umap.openstreetmap.de/de/map/laim_ba_mvp_2644#14/48.1363/11.5047)
 
